@@ -37,8 +37,3 @@ Hello! I'm excited to present my **personal portfolio website**, where you can e
 - **Dynamic Content**: Enhanced animations and interactions for better user engagement.
 - **Backend Integration**: Contact forms handled with PHP, ensuring secure and reliable processing.
 
-## 🚀 Getting Started
-
-1. **Clone this repository:**
-   ```bash
-   git clone https://github.com/yourusername/portfolio-website.git
