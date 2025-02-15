@@ -1,10 +1,3 @@
-/**
-* Template Name: Personal
-* Updated: May 30 2023 with Bootstrap v5.3.0
-* Template URL: https://bootstrapmade.com/personal-free-resume-bootstrap-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
 (function() {
   "use strict";
 
@@ -187,29 +180,33 @@
   /**
    * Porfolio isotope and filter
    */
-  window.addEventListener('load', () => {
-    let portfolioContainer = select('.portfolio-container');
-    if (portfolioContainer) {
-      let portfolioIsotope = new Isotope(portfolioContainer, {
-        itemSelector: '.portfolio-item',
-        layoutMode: 'fitRows'
-      });
+  document.addEventListener('DOMContentLoaded', function () {
+    const filterButtons = document.querySelectorAll('#portfolio-flters li');
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
 
-      let portfolioFilters = select('#portfolio-flters li', true);
-
-      on('click', '#portfolio-flters li', function(e) {
-        e.preventDefault();
-        portfolioFilters.forEach(function(el) {
-          el.classList.remove('filter-active');
-        });
+    filterButtons.forEach(button => {
+      button.addEventListener('click', function () {
+        // Remove the active class from all buttons
+        filterButtons.forEach(btn => btn.classList.remove('filter-active'));
+        
+        // Add the active class to the clicked button
         this.classList.add('filter-active');
 
-        portfolioIsotope.arrange({
-          filter: this.getAttribute('data-filter')
-        });
-      }, true);
-    }
+        // Get the filter value from the clicked button
+        const filterValue = this.getAttribute('data-filter');
 
+        // Loop through all portfolio items
+        portfolioItems.forEach(item => {
+          if (filterValue === '*' || item.classList.contains(filterValue.replace('.', ''))) {
+            // Show the item if it matches the filter or if 'All' is selected
+            item.style.display = 'block';
+          } else {
+            // Hide the item if it doesn't match the filter
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
   });
 
   /**
@@ -251,3 +248,4 @@
   new PureCounter();
 
 })()
+
